@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('jerry.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    img {
+      width: 200px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    #heartBox {
+      background: rgba(255, 192, 203, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+      backdrop-filter: blur(5px);
+      text-align: center;
+    }
+
+    #questionContainer {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      position: absolute;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #ff85a2;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      left: 50px;
+      top: 100px;
+      background-color: #ff6f61;
+    }
+
+    #noBtn {
+      left: 180px;
+      top: 100px;
+      background-color: #6c7ae0;
+    }
+
+    #heartLoader {
+      display: none;
+      font-size: 32px;
+      margin-top: 20px;
+    }
+
+    #resultContainer {
+      display: none;
+      font-size: 20px;
+      color: #ff5e87;
+      margin-top: 20px;
+    }
+
+    #loveImage {
+      display: none;
+      width: 200px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    #initialImage {
+      display: block;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ❤️ First image (shown initially) -->
+  <img id="initialImage" src="love.webp" alt="Initial Love Image" />
+
+  <!-- 💖 Heart-themed box -->
+  <div id="heartBox">
+    <div id="questionContainer">
+      <h2>Do you love me?</h2>
+      <button id="yesBtn" class="btn">Yes</button>
+      <button id="noBtn" class="btn">No</button>
+    </div>
+
+    <div id="heartLoader"> Loading...</div>
+    <div id="resultContainer">I knew it! I love you tooo </div>
+  </div>
+
+  <!-- ❤️ Second image (shown after clicking Yes) -->
+  <img id="loveImage" src="tom.jpg" alt="Love Image" />
+
+  <!-- 👣 Footer -->
+  <footer>Created by GP</footer>
+
+  <script>
+    const questionContainer = document.getElementById("questionContainer");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const heartLoader = document.getElementById("heartLoader");
+    const resultContainer = document.getElementById("resultContainer");
+    const loveImage = document.getElementById("loveImage");
+    const initialImage = document.getElementById("initialImage");
+
+    noBtn.addEventListener("mouseover", () => {
+      const newX = Math.floor(Math.random() * (questionContainer.offsetWidth - noBtn.offsetWidth));
+      const newY = Math.floor(Math.random() * (questionContainer.offsetHeight - noBtn.offsetHeight));
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      heartLoader.style.display = "block";
+      setTimeout(() => {
+        heartLoader.style.display = "none";
+        resultContainer.style.display = "block";
+        loveImage.style.display = "block";
+        initialImage.style.display = "none";
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
